@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 7 — War At The Docks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+            background-color: #000000;
+            color: #cccccc;
+            line-height: 1.6;
+            margin: 0 20%;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .chapter-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        h1, h4 {
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        h1 { margin-bottom: 0.5rem; }
+        h4 { color: #888888; font-size: 1.1rem; }
+        
+        .script-line {
+            margin-bottom: 1.25rem;
+            font-size: 1.25rem;
+        }
+        
+        .scene-action {
+            color: #888888;
+            font-style: italic;
+        }
+        
+        .speaker {
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .dialogue {
+            color: #ffffff;
+        }
+
+        .end-mark {
+            margin-top: 4rem;
+            color: #555555;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .speaker {
+            font-weight: bold;
+        }
+        
+        .speaker-nate, .speaker-anje, .speaker-microw {
+            color: #7cc0ff;
+        }
+        
+        .speaker-miguelito, .speaker-rider, .speaker-jomar, .speaker-thug, .speaker-gang {
+            color: #ff4d4d;
+        }
+
+        .speaker-panzer, .speaker-dmitri {
+            color: #49d46f;
+        }
+
+        .speaker-guard {
+            color: #888888;
+        }
+        .interactive-btn {
+            background-color: transparent;
+            border: 1px solid #555;
+            color: #888;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .interactive-btn:hover {
+            border-color: #49d46f;
+            color: #49d46f;
+            background: rgba(73, 212, 111, 0.1);
+        }
+
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: rgba(17, 17, 17, 0.9);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .audio-controls button {
+            background: none;
+            border: 1px solid #7cc0ff;
+            color: #7cc0ff;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+        }
+
+        .audio-controls input[type="range"] {
+            width: 80px;
+        }
+
+        .return-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .return-btn:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+</style>
+</head>
+<body>
+    <audio id="drone-music" src="assets/Free Bird.mp3"></audio>
+    
+    <div class="audio-controls" id="audio-controls">
+        <button id="mute-btn">MUTE</button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="1">
+    </div>
+
+    
+    <a href="index.html" class="return-btn">⮜ CHAPTERS</a>
+    <header class="chapter-header">
+        <h1>CHAPTER 7</h1>
+        <h4>WAR AT THE DOCKS</h4>
+    </header>
+
+    <main id="story-content">
+</main>
+
+    <script src="data/data_chapt_7.js"></script>
+    <script>
+        const data = window.chapterData || [];
+        const container = document.getElementById('story-content');
+        
+        const T1 = "[Panzer presses one final button on his tablet.]";
+        const T2 = "[The music from the drone slowly begins to fade as Panzer taps his tablet, sending the drone hovering higher and higher back up into the night sky, its job done.]";
+        
+        let currentIndex = 0;
+        
+        function createLine(item) {
+            const div = document.createElement('div');
+            if (item.type === 'action') {
+                div.className = 'script-line scene-action';
+                div.textContent = item.text;
+            } else if (item.type === 'dialogue') {
+                div.className = 'script-line';
+                
+                const speakerSpan = document.createElement('span');
+                speakerSpan.className = item.speaker_class;
+                speakerSpan.textContent = item.speaker + ':';
+                
+                const space = document.createTextNode(' ');
+                
+                const textSpan = document.createElement('span');
+                textSpan.className = 'dialogue';
+                textSpan.textContent = item.text;
+                
+                div.appendChild(speakerSpan);
+                div.appendChild(space);
+                div.appendChild(textSpan);
+            } else {
+                div.className = 'script-line';
+                div.textContent = item.text;
+            }
+            return div;
+        }
+
+        function renderUntil(targetText, onReachTarget) {
+            let found = false;
+            while (currentIndex < data.length) {
+                const item = data[currentIndex];
+                currentIndex++;
+                
+                container.appendChild(createLine(item));
+                
+                if (item.text === targetText) {
+                    found = true;
+                    if (onReachTarget) onReachTarget();
+                    break;
+                }
+            }
+            
+            if (!found && targetText === null && onReachTarget) {
+                 onReachTarget();
+            }
+        }
+        
+        renderUntil(T1, () => {
+            const btn = document.createElement('button');
+            btn.className = 'interactive-btn';
+            btn.textContent = '> Tap Tablet <';
+            btn.onclick = () => {
+                btn.style.display = 'none';
+                
+                const audio = document.getElementById('drone-music');
+                audio.volume = 1;
+                audio.play();
+
+                const audioControls = document.getElementById('audio-controls');
+                const muteBtn = document.getElementById('mute-btn');
+                const volSlider = document.getElementById('volume-slider');
+                
+                audioControls.style.display = 'flex';
+                
+                muteBtn.onclick = () => {
+                    audio.muted = !audio.muted;
+                    muteBtn.textContent = audio.muted ? 'UNMUTE' : 'MUTE';
+                };
+                
+                volSlider.oninput = (e) => {
+                    const v = parseFloat(e.target.value);
+                    audio.volume = v;
+                    if (v === 0) {
+                        muteBtn.textContent = 'UNMUTE';
+                    } else if (muteBtn.textContent === 'UNMUTE' && !audio.muted) {
+                        muteBtn.textContent = 'MUTE';
+                    }
+                };
+                
+                renderUntil(T2, () => {
+                    const btn2 = document.createElement('button');
+                    btn2.className = 'interactive-btn';
+                    btn2.textContent = '> Tap Tablet <';
+                    btn2.onclick = () => {
+                        btn2.style.display = 'none';
+                        audioControls.style.display = 'none';
+                        
+                        let vol = audio.volume;
+                        let fadeOut = setInterval(() => {
+                            if (vol > 0.05) {
+                                vol -= 0.05;
+                                audio.volume = vol;
+                            } else {
+                                clearInterval(fadeOut);
+                                audio.pause();
+                            }
+                        }, 100);
+                        
+                        renderUntil(null, () => {
+                            document.querySelector('.end-mark').style.display = 'block';
+                        });
+                    };
+                    container.appendChild(btn2);
+                });
+            };
+            container.appendChild(btn);
+        });
+    </script>
+    
+    <div class="end-mark" style="display: none;">
+        ========================<br>
+        END OF CHAPTER 7<br>
+        ========================
+    </div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                let currentUnlocks = parseInt(localStorage.getItem('bloodDebtUnlock')) || 1;
+                let match = window.location.pathname.match(/chapter-(\d+)\.html/);
+                if (match) {
+                    let thisChapter = parseInt(match[1]);
+                    if (thisChapter >= currentUnlocks) {
+                        localStorage.setItem('bloodDebtUnlock', thisChapter + 1);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

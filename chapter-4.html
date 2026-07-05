@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4 — The Mission</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+            background-color: #000000;
+            color: #cccccc;
+            line-height: 1.6;
+            margin: 0 20%;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .chapter-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        h1, h4 {
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        h1 { margin-bottom: 0.5rem; }
+        h4 { color: #888888; font-size: 1.1rem; }
+        
+        .script-line {
+            margin-bottom: 1.25rem;
+            font-size: 1.25rem;
+        }
+        
+        .scene-action {
+            color: #888888;
+            font-style: italic;
+        }
+        
+        .speaker {
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .dialogue {
+            color: #ffffff;
+        }
+
+        .end-mark {
+            margin-top: 4rem;
+            color: #555555;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .speaker {
+            font-weight: bold;
+        }
+        
+        .speaker-nate, .speaker-anje, .speaker-microw, .speaker-burat{
+            color: #7cc0ff;
+        }
+        
+        .speaker-miguelito, .speaker-rider {
+            color: #ff4d4d;
+        }
+
+        .speaker-panzer {
+            color: #49d46f;
+        }
+
+        .return-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .return-btn:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+</style>
+</head>
+<body>
+    
+    <a href="index.html" class="return-btn">⮜ CHAPTERS</a>
+    <header class="chapter-header">
+        <h1>CHAPTER 4</h1>
+        <h4>THE MISSION</h4>
+    </header>
+
+    <main id="story-content">
+</main>
+
+    <script src="data/data_chapt_4.js"></script>
+    <script>
+        const data = window.chapterData || [];
+        const container = document.getElementById('story-content');
+        data.forEach(item => {
+            const div = document.createElement('div');
+            if (item.type === 'action') {
+                div.className = 'script-line scene-action';
+                div.textContent = item.text;
+            } else if (item.type === 'dialogue') {
+                div.className = 'script-line';
+                
+                const speakerSpan = document.createElement('span');
+                speakerSpan.className = item.speaker_class;
+                speakerSpan.textContent = item.speaker + ':';
+                
+                const space = document.createTextNode(' ');
+                
+                const textSpan = document.createElement('span');
+                textSpan.className = 'dialogue';
+                textSpan.textContent = item.text;
+                
+                div.appendChild(speakerSpan);
+                div.appendChild(space);
+                div.appendChild(textSpan);
+            } else {
+                div.className = 'script-line';
+                div.textContent = item.text;
+            }
+            container.appendChild(div);
+        });
+    </script>
+
+    
+    <div class="end-mark">
+        ========================<br>
+        END OF CHAPTER 4<br>
+        ========================
+    </div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                let currentUnlocks = parseInt(localStorage.getItem('bloodDebtUnlock')) || 1;
+                let match = window.location.pathname.match(/chapter-(\d+)\.html/);
+                if (match) {
+                    let thisChapter = parseInt(match[1]);
+                    if (thisChapter >= currentUnlocks) {
+                        localStorage.setItem('bloodDebtUnlock', thisChapter + 1);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
