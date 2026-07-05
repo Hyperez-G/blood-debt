@@ -16,10 +16,6 @@ window.chapterData = [
         "text": "[The car stops in front of a heavy sliding gate.]"
     },
     {
-        "type": "action",
-        "text": "[Dmitri, who had been silent the entire drive, steps out first. He scans the perimeter, his eyes sweeping the rooftops and empty alleyways with practiced paranoia.]"
-    },
-    {
         "type": "dialogue",
         "speaker": "Nate",
         "speaker_class": "speaker speaker-nate",
