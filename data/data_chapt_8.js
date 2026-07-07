@@ -735,7 +735,7 @@ window.chapterData = [
         "type": "dialogue",
         "speaker": "Miguelito",
         "speaker_class": "speaker speaker-miguelito",
-        "text": "I tried to get it back, but that guy, Nate—he attacked us! With an army! They were wearing body armor and shooting at us with airsoft guns, it was insane! He wasn't part of any gang I know, but he showed up with—"
+        "text": "I tried to get it back, but that guy, he attacked us! With an army! They were wearing body armor and shooting at us with airsoft guns, it was insane! He wasn't part of any gang I know, but he showed up with—"
     },
     {
         "type": "dialogue",

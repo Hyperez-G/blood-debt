@@ -1,276 +1,513 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blood Debt — Chapters</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Regency: Blood Debt June 2026</title>
+    
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Calibri', sans-serif;
-            background-color: #000000;
-            color: #cccccc;
-            line-height: 1.6;
-            margin: 0;
-            padding: 4rem 20%;
+        :root {
+            --bg-color: #0a0505;
+            --card-bg: rgba(20, 10, 5, 0.7);
+            --accent-brown: #8B4513;
+            --accent-brown-bright: #CD853F;
+            --accent-gold: #D4A574;
+            --accent-gold-bright: #F5DEB3;
+            --text-primary: #e8e0d5;
+            --text-secondary: #a89080;
+            --border-color: rgba(139, 69, 19, 0.12);
+            --border-hover: rgba(139, 69, 19, 0.35);
+            --transition-speed: 0.4s;
+        }
+
+        * {
             box-sizing: border-box;
-            background-image: linear-gradient(to bottom, #111, #000);
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 0%, #2a1510 0%, #0a0505 60%),
+                radial-gradient(circle at 100% 100%, #150a05 0%, #050202 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 4rem 2rem;
             min-height: 100vh;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 4rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 2rem;
-        }
-        
-        h1 {
-            color: #ffffff;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 3rem;
-            margin: 0;
-            letter-spacing: 4px;
-        }
-
-        h4 {
-            color: #888888;
-            font-size: 1.2rem;
-            margin: 0.5rem 0 0;
-            letter-spacing: 2px;
-            font-weight: normal;
-        }
-        
-        .chapter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .chapter-card {
-            background-color: #111;
-            border: 1px solid #222;
-            border-radius: 8px;
-            padding: 24px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .chapter-card:hover {
-            border-color: #49d46f;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            background-color: #1a1a1a;
-        }
-        
-        .chap-num {
-            color: #555;
-            font-size: 0.9rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .chap-title {
-            color: #fff;
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        
-        .chapter-card:hover .chap-title {
-            color: #49d46f;
-        }
-
-        .universe-badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: #555;
-            text-transform: uppercase;
-            border: 1px solid #2a2a2a;
-            padding: 4px 10px;
-            border-radius: 3px;
-            margin-bottom: 1rem;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 6rem;
-            padding: 2rem 0;
-            border-top: 1px solid #1a1a1a;
-            color: #333;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-top: 6rem;
-            margin-bottom: 3rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 1rem;
-        }
-
-        .section-title h2 {
-            color: #ffffff;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 2rem;
-            margin: 0;
-            letter-spacing: 2px;
-        }
-
-        .characters-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            margin-bottom: 4rem;
-        }
-
-        .character-card-photo {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            width: 100%;
         }
 
-        .character-img {
+        .container {
             width: 100%;
-            height: 280px;
-            border-radius: 4px;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+
+
+        header {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 2rem;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+            padding-bottom: 2.5rem;
+        }
+
+        .header-logo {
+            width: 200px;
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .universe-badge {
+            align-self: flex-start;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 2px;
+            background: rgba(139, 69, 19, 0.03);
+            text-shadow: 0 0 10px rgba(139, 69, 19, 0.1);
+        }
+
+        .title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .sub-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 6px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 4px;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        /* Movie billing information styles */
+        .movie-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            letter-spacing: 1.5px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meta-item:not(:last-child)::after {
+            content: "•";
+            margin-left: 1.5rem;
+            color: rgba(139, 69, 19, 0.3);
+        }
+
+        .meta-badge {
+            background-color: var(--accent-brown);
+            color: #ffffff;
+            padding: 2px 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            border-radius: 2px;
+            letter-spacing: 0px;
+        }
+
+        .movie-info-block {
+            display: block;
+            margin-top: 0.8rem;
+        }
+
+        .synopsis-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .synopsis-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .synopsis {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+
+
+        /* Chapters Layout Grid */
+        .section-header {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .section-header::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(95deg, rgba(139, 69, 19, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            z-index: 1;
+        }
+
+        .chapter-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.6rem 1.6rem;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border-radius: 3px;
+            transition: all var(--transition-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-brown) 0%, var(--accent-gold) 100%);
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .chapter-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(139, 69, 19, 0.15);
+            background: rgba(30, 15, 5, 0.7);
+        }
+
+        .chapter-card:hover::before {
+            opacity: 1;
+        }
+
+        .chap-num {
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .chap-title {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .chapter-card:hover .chap-title {
+            color: var(--accent-gold-bright);
+        }
+
+        /* Characters Styles */
+        .cast-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .cast-card {
+            background: linear-gradient(135deg, rgba(20, 10, 5, 0.5) 0%, rgba(10, 5, 2, 0.7) 100%);
+            border: 1px solid rgba(139, 69, 19, 0.08);
+            border-radius: 3px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cast-card:hover {
+            border-color: rgba(139, 69, 19, 0.2);
+            background: rgba(30, 15, 5, 0.5);
+            transform: scale(1.03);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(139, 69, 19, 0.08);
+        }
+
+        .cast-img {
+            width: 100%;
+            height: 200px;
             object-fit: cover;
             object-position: top;
-            border: 2px solid #222;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border-radius: 2px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(139, 69, 19, 0.1);
         }
 
-        .character-card-photo:hover .character-img {
-            border-color: #49d46f;
-            transform: scale(1.05);
-            box-shadow: 0 8px 15px rgba(73, 212, 111, 0.2);
+        .cast-name {
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
         }
 
-        .character-name {
-            color: #ccc;
-            font-size: 1.1rem;
-            font-weight: bold;
+        /* Locked Card Styling */
+        .chapter-card.locked {
+            opacity: 0.35;
+            filter: grayscale(100%);
+            border-color: rgba(255, 255, 255, 0.05);
+            background: rgba(10, 5, 5, 0.4);
+        }
+
+        footer {
+            margin-top: 6rem;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(139, 69, 19, 0.08);
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
         }
 
-        .character-card-photo:hover .character-name {
-            color: #fff;
+        footer .credits {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 850px) {
+            body {
+                padding: 3rem 1.5rem;
+            }
+            .cast-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .cast-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .chapter-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="universe-badge">Regency Universe</div>
-        <h1>BLOOD DEBT</h1>
-        <h4>SERIES INDEX</h4>
+    <div class="container">
+        <!-- Elegant Header with Movie Description -->
+        <header>
+            <img src="assets/images/Blood_Debt.png" alt="Blood Debt" class="header-logo">
+            <div class="header-content">
+                <div class="universe-badge">Regency Universe</div>
+                <div class="title-group">
+                    <span class="sub-title">Regency: Blood Debt</span>
+                    <h1>BLOOD DEBT</h1>
+                </div>
+                
+                <!-- Movie-style Billing Metadata -->
+                <div class="movie-meta">
+                    <div class="meta-item"><span class="meta-badge">R</span></div>
+                    <div class="meta-item">Crime</div>
+                    <div class="meta-item">Thriller</div>
+                    <div class="meta-item">Action</div>
+                    <div class="meta-item">Comedy</div>
+                    <div class="meta-item">Drama</div>
+                    <div class="meta-item">8 Chapters</div>
+                </div>
+
+                <!-- Description Block -->
+                <div class="movie-info-block">
+                    <div class="synopsis-container">
+                        <p class="synopsis">
+                            June 2026, Philippines, Batangas. Nate finds himself trapped in a dangerous game of debts and loyalty. When a simple job goes wrong, he's pulled into a web of gang violence and betrayal. But it's his love for Anje, the love of his life, that drives him to survive, even as the darkness threatens to consume them both.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chapters Section -->
+        <section>
+            <h2 class="section-header">Chapters</h2>
+            <div class="chapter-grid" id="chapterGrid">
+                <a href="chapter-1.html" class="chapter-card">
+                    <span class="chap-num">Chapter I</span>
+                    <span class="chap-title">The Moment Before Everything Breaks</span>
+                </a>
+                <a href="chapter-2.html" class="chapter-card">
+                    <span class="chap-num">Chapter II</span>
+                    <span class="chap-title">The Breaking Point</span>
+                </a>
+                <a href="chapter-3.html" class="chapter-card">
+                    <span class="chap-num">Chapter III</span>
+                    <span class="chap-title">Something Bigger Than a Gang</span>
+                </a>
+                <a href="chapter-4.html" class="chapter-card">
+                    <span class="chap-num">Chapter IV</span>
+                    <span class="chap-title">The Mission</span>
+                </a>
+                <a href="chapter-5.html" class="chapter-card">
+                    <span class="chap-num">Chapter V</span>
+                    <span class="chap-title">Blood on the Street</span>
+                </a>
+                <a href="chapter-6.html" class="chapter-card">
+                    <span class="chap-num">Chapter VI</span>
+                    <span class="chap-title">Beyond the Gang</span>
+                </a>
+                <a href="chapter-7.html" class="chapter-card">
+                    <span class="chap-num">Chapter VII</span>
+                    <span class="chap-title">War at the Docks</span>
+                </a>
+                <a href="chapter-8.html" class="chapter-card">
+                    <span class="chap-num">Chapter VIII</span>
+                    <span class="chap-title">The Final Shot</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Characters Section -->
+        <section>
+            <h2 class="section-header">Characters</h2>
+            <div class="cast-grid">
+                <div class="cast-card">
+                    <img src="assets/images/Nate.png" alt="Nate" class="cast-img">
+                    <div class="cast-name">Nate</div>
+                </div>
+                <div class="cast-card">
+                    <img src="assets/images/Anje.png" alt="Anje" class="cast-img">
+                    <div class="cast-name">Anje</div>
+                </div>
+                <div class="cast-card">
+                    <img src="assets/images/Microw.png" alt="Microw" class="cast-img">
+                    <div class="cast-name">Microw</div>
+                </div>
+                <div class="cast-card">
+                    <img src="assets/images/Panzer.png" alt="Panzer" class="cast-img">
+                    <div class="cast-name">Panzer</div>
+                </div>
+                <div class="cast-card">
+                    <img src="assets/images/Dmitri.png" alt="Dmitri" class="cast-img">
+                    <div class="cast-name">Dmitri</div>
+                </div>
+                <div class="cast-card">
+                    <img src="assets/images/Miguelito.png" alt="Miguelito" class="cast-img">
+                    <div class="cast-name">Miguelito</div>
+                </div>
+                <div class="cast-card">
+                    <img src="assets/images/Jomar.png" alt="Jomar" class="cast-img">
+                    <div class="cast-name">Jomar</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Elegant Footer -->
+        <footer>
+            <div class="credits">REGENCY UNIVERSE PRESENTATION</div>
+            <div>&copy; 2026 BLOOD DEBT. All Rights Reserved.</div>
+        </footer>
     </div>
 
-    <div class="chapter-grid">
-        <a href="chapter-1.html" class="chapter-card">
-            <span class="chap-num">CHAPTER 1</span>
-            <span class="chap-title">THE MOMENT BEFORE EVERYTHING BREAKS</span>
-        </a>
-        <a href="chapter-2.html" class="chapter-card">
-            <span class="chap-num">CHAPTER 2</span>
-            <span class="chap-title">THE BREAKING POINT</span>
-        </a>
-        <a href="chapter-3.html" class="chapter-card">
-            <span class="chap-num">CHAPTER 3</span>
-            <span class="chap-title">SOMETHING BIGGER THAN A GANG</span>
-        </a>
-        <a href="chapter-4.html" class="chapter-card">
-            <span class="chap-num">CHAPTER 4</span>
-            <span class="chap-title">THE MISSION</span>
-        </a>
-        <a href="chapter-5.html" class="chapter-card">
-            <span class="chap-num">CHAPTER 5</span>
-            <span class="chap-title">BLOOD ON THE STREET</span>
-        </a>
-        <a href="chapter-6.html" class="chapter-card">
-            <span class="chap-num">CHAPTER 6</span>
-            <span class="chap-title">BEYOND THE GANG</span>
-        </a>
-        <a href="chapter-7.html" class="chapter-card">
-            <span class="chap-num">CHAPTER 7</span>
-            <span class="chap-title">WAR AT THE DOCKS</span>
-        </a>
-        <a href="chapter-8.html" class="chapter-card">
-            <span class="chap-num">CHAPTER 8</span>
-            <span class="chap-title">THE FINAL SHOT</span>
-        </a>
-    </div>
-
-    <div class="section-title">
-        <h2>CHARACTERS</h2>
-    </div>
-
-    <div class="characters-grid">
-        <div class="character-card-photo">
-            <img src="assets/images/Nate.png" alt="Nate" class="character-img">
-            <div class="character-name">Nate</div>
-        </div>
-        <div class="character-card-photo">
-            <img src="assets/images/Anje.png" alt="Anje" class="character-img">
-            <div class="character-name">Anje</div>
-        </div>
-        <div class="character-card-photo">
-            <img src="assets/images/Microw.png" alt="Microw" class="character-img">
-            <div class="character-name">Microw</div>
-        </div>
-        <div class="character-card-photo">
-            <img src="assets/images/Panzer.png" alt="Panzer" class="character-img">
-            <div class="character-name">Panzer</div>
-        </div>
-        <div class="character-card-photo">
-            <img src="assets/images/Dmitri.png" alt="Dmitri" class="character-img">
-            <div class="character-name">Dmitri</div>
-        </div>
-        <div class="character-card-photo">
-            <img src="assets/images/Miguelito.png" alt="Miguelito" class="character-img">
-            <div class="character-name">Miguelito</div>
-        </div>
-        <div class="character-card-photo">
-            <img src="assets/images/Jomar.png" alt="Jomar" class="character-img">
-            <div class="character-name">Jomar</div>
-        </div>
-    </div>
-
+    <!-- Chapter locks script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            let unlocks = parseInt(localStorage.getItem('bloodDebtUnlock')) || 1;
-            
+            let unlocks = 1;
+            try {
+                unlocks = parseInt(localStorage.getItem('bloodDebtUnlock')) || 1;
+            } catch (e) {
+                console.warn("localStorage block ignored flag:", e);
+            }
+
             const cards = document.querySelectorAll('.chapter-card');
             cards.forEach((card, index) => {
                 let chapNum = index + 1;
                 if (chapNum > unlocks) {
-                    card.style.opacity = '0.4';
+                    card.classList.add('locked');
                     card.style.pointerEvents = 'none';
-                    card.style.filter = 'grayscale(100%)';
-                    
+
+                    const numSpan = card.querySelector('.chap-num');
                     const titleSpan = card.querySelector('.chap-title');
-                    titleSpan.innerHTML = "🔒 <i>LOCKED</i>";
-                    
+                    if (numSpan) numSpan.style.opacity = '0.3';
+                    if (titleSpan) {
+                        titleSpan.innerHTML = '<span style="opacity:0.3;font-size:0.75rem;letter-spacing:2px;">LOCKED</span>';
+                    }
+
                     card.href = 'javascript:void(0)';
                 }
             });
         });
     </script>
-
-    <div class="footer">
-        Regency Universe &nbsp;·&nbsp; Blood Debt
-    </div>
 </body>
 </html>
